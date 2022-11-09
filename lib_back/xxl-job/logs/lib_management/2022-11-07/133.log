@@ -1,0 +1,17 @@
+2022-11-07 17:39:33 [com.xxl.job.core.thread.JobThread#run]-[130]-[Thread-7] <br>----------- xxl-job job execute start -----------<br>----------- Param:
+2022-11-07 17:39:33 [com.xxl.job.core.thread.JobThread#run]-[201]-[Thread-7] <br>----------- JobThread Exception:java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at com.xxl.job.core.handler.impl.MethodJobHandler.execute(MethodJobHandler.java:31)
+	at com.xxl.job.core.thread.JobThread.run(JobThread.java:163)
+Caused by: java.lang.NullPointerException
+	at org.dog.server.service.impl.SendInfoServiceImpl.saveInfo(SendInfoServiceImpl.java:55)
+	at org.dog.server.service.impl.SendInfoServiceImpl$$FastClassBySpringCGLIB$$1de1c6f9.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:687)
+	at org.dog.server.service.impl.SendInfoServiceImpl$$EnhancerBySpringCGLIB$$edca025b.saveInfo(<generated>)
+	... 6 more
+<br>----------- xxl-job job execute end(error) -----------
+2022-11-07 17:39:33 [com.xxl.job.core.thread.TriggerCallbackThread#callbackLog]-[197]-[xxl-job, executor TriggerCallbackThread] <br>----------- xxl-job job callback finish.

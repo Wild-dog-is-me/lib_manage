@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dog.server.mapper.CategoryMapper">
+
+  <resultMap id="categoryMap" type="org.dog.server.entity.Category">
+    <id column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="remark" property="remark" />
+    <result column="pid" property="pid" />
+    <result column="createtime" property="createtime" />
+    <result column="updatetime" property="updatetime" />
+    <collection property="children" ofType="org.dog.server.entity.Category" column="{id}" select="selectByPid" />
+  </resultMap>
+
+  <select id="selectByPid" resultType="org.dog.server.entity.Category">
+    select *
+    from category
+    where pid = #{pid};
+  </select>
+
+
+  <delete id="deleteById">
+    delete
+    from category
+    where id = #{id};
+  </delete>
+
+
+  <select id="listByCondition" resultMap="categoryMap">
+    <!--    select c1.*,'${name}' as queryName from category c1-->
+    <!--    left join category c2-->
+    <!--    on c1.id = c2.pid-->
+    <!--    <where>-->
+    <!--      isnull(c1.pid)-->
+    <!--      <if test="name != null and name != ''">-->
+    <!--        and (c1.name like concat('%', #{name}, '%') or c2.name like concat('%', #{name}, '%'))-->
+    <!--      </if>-->
+    <!--    </where>-->
+    <!--    group by c1.id-->
+    <!--    order by c1.id desc-->
+    select * from category
+    <where>
+        isnull(pid)
+      <if test="name != null and name != ''">
+        name like concat('%',#{name},'%')
+      </if>
+    </where>
+  </select>
+
+
+  <select id="list" resultType="org.dog.server.entity.Category">
+    select *
+    from category;
+  </select>
+
+
+  <select id="getById" resultType="org.dog.server.entity.Category">
+    select *
+    from category
+    where id = #{id};
+  </select>
+
+  <update id="save">
+    insert into category(name, remark, pid)
+    values (#{name}, #{remark}, #{pid});
+  </update>
+
+  <update id="updateById">
+    update category
+    set name       = #{name},
+        remark     = #{remark},
+        updatetime = #{updatetime}
+    where id = #{id};
+  </update>
+
+
+</mapper>
