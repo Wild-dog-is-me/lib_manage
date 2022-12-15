@@ -26,7 +26,7 @@
 
   <update id="save">
     insert into user(name, username, age, account, score, sex, phone, email)
-    values (#{name}, #{username}, #{age}, #{account}, #{score} #{sex}, #{phone}, #{email});
+    values (#{name}, #{username}, #{age}, #{account}, #{score} ,#{sex}, #{phone}, #{email});
   </update>
 
 
